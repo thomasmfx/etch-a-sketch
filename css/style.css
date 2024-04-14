@@ -3,7 +3,7 @@
 
 *, *::before, *::after {
     box-sizing: border-box;
-    font-family: cursive, serif, sans-serif;
+    font-family: arial, cursive, serif;
 }
 
 body {
@@ -48,8 +48,6 @@ nav {
 }
 
 .square {
-    /* Não esquece de mudar a quantidade no script */
-    flex-basis: calc(100%/16); 
-    border: 1.1px solid black;
+    border: 1px solid black;
 }
 
