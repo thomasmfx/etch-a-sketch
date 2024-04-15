@@ -1,9 +1,25 @@
 const container = document.querySelector("#container");
-const resetBtn = document.querySelector("#reset-btn")
+const clearBtn = document.querySelector("#clear-btn")
 const btn16x16 = document.querySelector("#btn-16x16")
 const btn32x32 = document.querySelector("#btn-32x32");
-const btn64x64 = document.querySelector("#btn-64x64")
-const customBtn = document.querySelector("#custom-btn")
+const btn64x64 = document.querySelector("#btn-64x64");
+const customBtn = document.querySelector("#custom-btn");
+let squares;
+
+// Paint squares
+function painstSquares() {
+    squares = document.querySelectorAll(".square");
+    squares.forEach((square) => {
+        let brightness = 1;
+        square.onmouseover = function () {
+            if (square.getAttribute("style").indexOf("background-color:") == -1) {
+                square.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            } else {
+                square.style.filter = `brightness(${brightness -= 0.1})`;
+            }
+        };
+    });
+};
 
 // Create default 16x16 divs when page loads
 for (let i = 0; i < 256; i++) {
@@ -11,11 +27,12 @@ for (let i = 0; i < 256; i++) {
     container.insertBefore(newSquare, container.firstElementChild);
     newSquare.classList.add("square");
     newSquare.style.flexBasis = "calc(100%/16)";
+    painstSquares();
 };
 
 // Reset Button
-resetBtn.addEventListener("click", () => {
-    let squares = document.querySelectorAll(".square");
+clearBtn.addEventListener("click", () => {
+    squares = document.querySelectorAll(".square");
     squares.forEach((square) => {
         square.style.backgroundColor = null;
         square.style.removeProperty("filter");
@@ -24,7 +41,7 @@ resetBtn.addEventListener("click", () => {
 
 // 16x16 Button
 btn16x16.addEventListener("click", () => {
-    let squares = document.querySelectorAll(".square");
+    squares = document.querySelectorAll(".square");
     squares.forEach((square) => {
         square.remove()
     });
@@ -34,11 +51,12 @@ btn16x16.addEventListener("click", () => {
         newSquare.classList.add("square");
         newSquare.style.flexBasis = "calc(100%/16)";
     };
+    painstSquares();
 });
 
 // 32x32 Button
 btn32x32.addEventListener("click", () => {
-    let squares = document.querySelectorAll(".square");
+    squares = document.querySelectorAll(".square");
     squares.forEach((square) => {
         square.remove()
     });
@@ -48,11 +66,12 @@ btn32x32.addEventListener("click", () => {
         newSquare.classList.add("square");
         newSquare.style.flexBasis = "calc(100%/32)";
     };
+    painstSquares();
 });
 
 // 64x64 Button
 btn64x64.addEventListener("click", () => {
-    let squares = document.querySelectorAll(".square");
+    squares = document.querySelectorAll(".square");
     squares.forEach((square) => {
         square.remove()
     });
@@ -62,11 +81,12 @@ btn64x64.addEventListener("click", () => {
         newSquare.classList.add("square");
         newSquare.style.flexBasis = "calc(100%/64)";
     };
+    painstSquares();
 });
 
 // Custom Button
 customBtn.addEventListener("click", () => {
-    let squares = document.querySelectorAll(".square");
+    squares = document.querySelectorAll(".square");
     customValue = prompt("How many squares per row do you want? Example: 32 = 32x32");
     totalCustomSquares = customValue * customValue;
 
@@ -83,18 +103,5 @@ customBtn.addEventListener("click", () => {
     } else {
         alert("The limit of squares is 100!")
     };
-});
-
-// Paint squares
-let squares = document.querySelectorAll(".square");
-
-squares.forEach((square) => {
-    let brightness = 1;
-    square.onmouseover = function () {
-        if (square.getAttribute("style").indexOf("background-color:") == -1) {
-            square.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-        } else {
-            square.style.filter = `brightness(${brightness -= 0.1})`;
-        }
-    };
+    painstSquares();
 });
