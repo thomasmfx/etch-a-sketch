@@ -87,7 +87,7 @@ btn64x64.addEventListener("click", () => {
 // Custom Button
 customBtn.addEventListener("click", () => {
     squares = document.querySelectorAll(".square");
-    customValue = prompt("How many squares per row do you want? Example: 32 = 32x32");
+    customValue = prompt("Type a custom grid size (16 = 16x16)");
     totalCustomSquares = customValue * customValue;
 
     if (customValue <= 100) {
@@ -101,7 +101,7 @@ customBtn.addEventListener("click", () => {
             newSquare.style.flexBasis = `calc(100%/${customValue})`
         };
     } else {
-        alert("The limit of squares is 100!")
+        alert("The limit is 100!")
     };
     painstSquares();
 });
